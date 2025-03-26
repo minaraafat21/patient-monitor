@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1440</width>
-    <height>855</height>
+    <width>1530</width>
+    <height>1053</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,6 +23,12 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QWidget" name="widget" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 41, 62);</string>
          </property>
@@ -45,7 +51,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap>icons8-user-48 (1).png</pixmap>
+             <pixmap>icons8-user-48.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -96,7 +102,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap>icons8-screen-50.png</pixmap>
+             <pixmap>icons8-user-48.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -214,55 +220,45 @@
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
                        </property>
-                       <widget class="QLabel" name="label_11">
-                        <property name="geometry">
-                         <rect>
-                          <x>10</x>
-                          <y>10</y>
-                          <width>60</width>
-                          <height>16</height>
-                         </rect>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">color: rgb(85, 255, 0);</string>
-                        </property>
-                        <property name="text">
-                         <string>HR</string>
-                        </property>
-                       </widget>
-                       <widget class="QLabel" name="label_12">
-                        <property name="geometry">
-                         <rect>
-                          <x>50</x>
-                          <y>10</y>
-                          <width>16</width>
-                          <height>16</height>
-                         </rect>
-                        </property>
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                          <horstretch>0</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="pixmap">
-                         <pixmap>icons8-heart-30.png</pixmap>
-                        </property>
-                        <property name="scaledContents">
-                         <bool>true</bool>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
+                       <layout class="QHBoxLayout" name="horizontalLayout_3">
+                        <item>
+                         <widget class="QLabel" name="label_11">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(85, 255, 0);</string>
+                          </property>
+                          <property name="text">
+                           <string>HR</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_12">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap>icons8-heart-30.png</pixmap>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
                       </widget>
                      </item>
                      <item>
@@ -369,6 +365,12 @@ color: rgb(0, 255, 255);</string>
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>150</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -533,6 +535,12 @@ color: rgb(0, 255, 255);</string>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>150</height>
+                     </size>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -694,6 +702,12 @@ color: rgb(255, 255, 0);</string>
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>150</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -937,7 +951,7 @@ color: rgb(255, 255, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1440</width>
+     <width>1530</width>
      <height>20</height>
     </rect>
    </property>
