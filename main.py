@@ -1,5 +1,6 @@
 import sys
 import numpy as np
+import pandas as pd
 import scipy.io as sio
 from scipy.signal import butter, find_peaks, filtfilt
 from PyQt5 import QtWidgets, QtCore, uic, QtGui
@@ -38,13 +39,24 @@ class MainWindow(QtWidgets.QMainWindow):
     def load_signal(self):
         """Loads an ECG signal from a .mat file and starts plotting."""
         file_dialog = QtWidgets.QFileDialog()
-        file_path, _ = file_dialog.getOpenFileName(self, "Open ECG Signal", "", "MAT Files (*.mat)")
+        file_path, _ = file_dialog.getOpenFileName(self, "Open ECG Signal", "", "MAT Files (*.mat);;CSV Files (*.csv)")
 
         if file_path:
             try:
-                mat_contents = sio.loadmat(file_path)
-                self.ecg_signal = mat_contents['val'].squeeze()
+                if file_path.endswith('.mat'):
+                    mat_contents = sio.loadmat(file_path)
+                    self.ecg_signal = mat_contents['val'].squeeze()
+                    self.fs=360
+                    self.detect_AF()
 
+                elif file_path.endswith('.csv'):
+                    df = pd.read_csv(file_path)
+                    time = df['Time'].to_numpy()
+                    self.ecg_signal = df['Amplitude'].to_numpy()
+                    self.fs = 1 / (time[1] - time[0])
+                    self.detect_VT_OR_Bradycardia()
+                else:
+                    raise ValueError("Unsupported file format. Please use .mat or .csv files.")
                 # Reset index and stop previous playback
                 self.current_index = 0
                 self.timer.stop()
@@ -55,7 +67,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 # Start the animation
                 self.timer.start()
 
-                self.detect_AF()
             except Exception as e:
                 QtWidgets.QMessageBox.critical(self, "Error", f"Failed to load ECG signal: {e}")
 
@@ -99,8 +110,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def detect_AF(self):
         """Detects arrythmia in the ECG signal."""
-        self.fs = 360
-
         min_distance = int(0.4 * self.fs)
         peaks, properties = find_peaks(self.ecg_signal, distance=min_distance, prominence=1)
 
