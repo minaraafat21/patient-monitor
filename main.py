@@ -54,6 +54,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 # Start the animation
                 self.timer.start()
+
+                self.detect_AF()
             except Exception as e:
                 QtWidgets.QMessageBox.critical(self, "Error", f"Failed to load ECG signal: {e}")
 
