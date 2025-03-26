@@ -23,7 +23,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.timer.timeout.connect(self.update_plot)
 
         self.ecg_signal = None
-        self.window_size = 500
+        self.window_size = 1500
         self.current_index = 0
         self.path_item = None  # Placeholder for ECG path
 
