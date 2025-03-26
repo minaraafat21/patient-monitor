@@ -2,25 +2,31 @@ import sys
 import numpy as np
 import scipy.io as sio
 from PyQt5 import QtWidgets, QtCore, uic, QtGui
+from dummies import SPO2Graph, ABPGraph, RESPGraph  # Import the other graphs
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         uic.loadUi("ui.ui", self)  # Load UI file
 
-        # Find the QGraphicsView in the UI
+        # ECG Graph
         self.graphics_view = self.findChild(QtWidgets.QGraphicsView, "ECG_graphicsView")
         self.scene = QtWidgets.QGraphicsScene(self)
         self.graphics_view.setScene(self.scene)
+
+        # Other Graphs
+        self.spo2_graph = SPO2Graph(self.findChild(QtWidgets.QGraphicsView, "SPO2_graficsView"))
+        self.abp_graph = ABPGraph(self.findChild(QtWidgets.QGraphicsView, "ABP_graphicsView"))
+        self.resp_graph = RESPGraph(self.findChild(QtWidgets.QGraphicsView, "RESP_graphiicsView"))
 
         # Load button
         self.load_button = self.findChild(QtWidgets.QPushButton, "load_btn")
         self.load_button.clicked.connect(self.load_signal)
 
-        # Timer for updating the ECG signal
+        # Timer for updating the plots
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(50)
-        self.timer.timeout.connect(self.update_plot)
+        self.timer.timeout.connect(self.update_plots)
 
         self.ecg_signal = None
         self.window_size = 1500
@@ -49,7 +55,14 @@ class MainWindow(QtWidgets.QMainWindow):
             except Exception as e:
                 QtWidgets.QMessageBox.critical(self, "Error", f"Failed to load ECG signal: {e}")
 
-    def update_plot(self):
+    def update_plots(self):
+        """Updates all plots."""
+        self.update_ecg_plot()
+        self.spo2_graph.update_plot()
+        self.abp_graph.update_plot()
+        self.resp_graph.update_plot()
+
+    def update_ecg_plot(self):
         """Updates the ECG signal in the QGraphicsView."""
         if self.ecg_signal is None:
             return
@@ -75,7 +88,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Remove old path and add new one
         if self.path_item:
             self.scene.removeItem(self.path_item)
-        self.path_item = self.scene.addPath(path, QtGui.QPen(QtGui.QColor("red"), 2))
+        self.path_item = self.scene.addPath(path, QtGui.QPen(QtGui.QColor(85,255,0), 2))
 
         # Adjust the view
         self.graphics_view.setSceneRect(0, 0, self.window_size, 100)
