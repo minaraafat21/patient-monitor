@@ -141,19 +141,22 @@ class MainWindow(QtWidgets.QMainWindow):
 
         min_distance = int(0.4 * self.fs)
 
-        peaks, properties = find_peaks(self.ecg_signal, distance=min_distance, prominance=1)  # Adjust 'height' and 'distance' based on your data
+        peaks, properties = find_peaks(self.ecg_signal, distance=min_distance, prominence=1)  # Adjust 'height' and 'distance' based on your data
 
         rr_intervals = np.diff(peaks) / self.fs # Time differences between peaks
         heart_rate = 60 / np.mean(rr_intervals)
 
         if heart_rate > 100:
             condition = "Ventricular Tachycardia (heart rate > 100 BPM)"
+            print(condition)
             # activate alarm of VT
         elif heart_rate < 60:
             condition = "Bradycardia (heart rate < 60 BPM)"
+            print(condition)
             # activate alarm of bradycardia
         else:
             condition = "Normal heart rate"
+            print(condition)
             # no alarm - normal
 
 if __name__ == '__main__':
