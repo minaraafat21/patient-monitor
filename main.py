@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 import scipy.io as sio
+from scipy.signal import butter, find_peaks, filtfilt
 from PyQt5 import QtWidgets, QtCore, uic, QtGui
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -26,6 +27,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.window_size = 1500
         self.current_index = 0
         self.path_item = None  # Placeholder for ECG path
+        self.fs = None
 
     def load_signal(self):
         """Loads an ECG signal from a .mat file and starts plotting."""
@@ -79,6 +81,56 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Adjust the view
         self.graphics_view.setSceneRect(0, 0, self.window_size, 100)
+
+    def detect_AF(self):
+        """Detects arrythmia in the ECG signal."""
+        self.fs = 360
+
+        min_distance = int(0.4 * self.fs)
+        peaks, properties = find_peaks(self.ecg_signal, distance=min_distance, prominence=1)
+
+        rr_intervals = np.diff(peaks) / self.fs
+
+        if len(rr_intervals) > 1:
+            mean_rr = np.mean(rr_intervals)
+            std_rr = np.std(rr_intervals)
+            coeff_variation = std_rr / mean_rr  # relative variability
+
+            print("Mean RR Interval: {:.3f} s".format(mean_rr))
+            print("STD of RR Intervals: {:.3f} s".format(std_rr))
+            print("Coefficient of Variation: {:.3f}".format(coeff_variation))
+            
+            variability_threshold = 0.1 
+            if coeff_variation > variability_threshold:
+                print("Atrial fibrillation detected: High variability in RR intervals!")
+                # activate alarm of AF
+
+            else:
+                print("Heart rhythm appears regular based on our RR interval analysis.")
+                # No AF detected - normal rhythm
+        else:
+            print("Not enough beats detected for arrhythmia analysis.")
+    
+    def detect_VT_OR_Bradycardia(self):
+        """Detects ventricular tachycardia or bradycardia in the ECG signal."""
+        # self.fs = 300    # sampling frequency of the data
+
+        min_distance = int(0.4 * self.fs)
+
+        peaks, properties = find_peaks(self.ecg_signal, distance=min_distance, prominance=1)  # Adjust 'height' and 'distance' based on your data
+
+        rr_intervals = np.diff(peaks) / self.fs # Time differences between peaks
+        heart_rate = 60 / np.mean(rr_intervals)
+
+        if heart_rate > 100:
+            condition = "Ventricular Tachycardia (heart rate > 100 BPM)"
+            # activate alarm of VT
+        elif heart_rate < 60:
+            condition = "Bradycardia (heart rate < 60 BPM)"
+            # activate alarm of bradycardia
+        else:
+            condition = "Normal heart rate"
+            # no alarm - normal
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
