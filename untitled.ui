@@ -900,6 +900,13 @@ color: rgb(255, 255, 0);</string>
                  </layout>
                 </widget>
                </item>
+               <item>
+                <widget class="QPushButton" name="load_btn">
+                 <property name="text">
+                  <string>Load Data</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
