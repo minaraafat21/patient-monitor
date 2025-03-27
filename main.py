@@ -4,12 +4,12 @@ import pandas as pd
 import scipy.io as sio
 from scipy.signal import butter, find_peaks, filtfilt
 from PyQt5 import QtWidgets, QtCore, uic, QtGui
-from dummies import SPO2Graph, ABPGraph, RESPGraph  # Import the other graphs
+from dummies import SPO2Graph, ABPGraph, RESPGraph 
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        uic.loadUi("ui.ui", self)  # Load UI file
+        uic.loadUi("ui.ui", self)  
 
         # ECG Graph
         self.graphics_view = self.findChild(
@@ -17,7 +17,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.scene = QtWidgets.QGraphicsScene(self)
         self.graphics_view.setScene(self.scene)
 
-        # Other Graphs
+        # Dummy Graphs
         self.spo2_graph = SPO2Graph(self.findChild(
             QtWidgets.QGraphicsView, "SPO2_graficsView"))
         self.abp_graph = ABPGraph(self.findChild(
@@ -166,7 +166,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             else:
                 print("Heart rhythm appears regular based on our RR interval analysis.")
-                # No AF detected - normal rhythm
+                # no AF detected - normal rhythm
         else:
             print("Not enough beats detected for arrhythmia analysis.")
 
@@ -176,7 +176,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         min_distance = int(0.4 * self.fs)
 
-        # Adjust 'height' and 'distance' based on your data
         peaks, properties = find_peaks(
             self.ecg_signal, distance=min_distance, prominence=1)
 
@@ -203,7 +202,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def alarm_siren(self, widget):
         """Continuously toggles the alarm style on the widget."""        
         self.alarm_timer = QtCore.QTimer(self)
-        self.alarm_state = True  # Track the current state (normal or alarm)
+        self.alarm_state = True  # Track the current state normal or alarm
 
         def toggle_style():
             if self.alarm_state:
