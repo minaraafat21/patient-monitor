@@ -25,6 +25,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.resp_graph = RESPGraph(self.findChild(
             QtWidgets.QGraphicsView, "RESP_graphiicsView"))
 
+        # heart rate label
+        self.hr_label = self.findChild(QtWidgets.QLabel, "HR_label")
         # Load button
         self.load_button = self.findChild(QtWidgets.QPushButton, "load_btn")
         self.load_button.clicked.connect(self.load_signal)
@@ -60,12 +62,13 @@ class MainWindow(QtWidgets.QMainWindow):
             self, "Open ECG Signal", "", "MAT Files (*.mat);;CSV Files (*.csv)")
 
         if file_path:
+            # reset alarms
             if hasattr(self, 'alarm_timer'):
                 try:
                     self.alarm_timer.timeout.disconnect()
                 except:
                     pass
-                
+
                 self.AF_widget.setStyleSheet(self.normal_siren_style)
                 self.bradycardia_widget.setStyleSheet(self.normal_siren_style)
                 self.VT_widget.setStyleSheet(self.normal_siren_style)
@@ -139,10 +142,12 @@ class MainWindow(QtWidgets.QMainWindow):
     def detect_AF(self):
         """Detects arrythmia in the ECG signal."""
         min_distance = int(0.4 * self.fs)
-        peaks, properties = find_peaks(
+        peaks, _ = find_peaks(
             self.ecg_signal, distance=min_distance, prominence=1)
 
         rr_intervals = np.diff(peaks) / self.fs
+        heart_rate = 60 / np.mean(rr_intervals)
+        self.hr_label.setText(str(int(heart_rate)))
 
         if len(rr_intervals) > 1:
             mean_rr = np.mean(rr_intervals)
@@ -178,6 +183,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Time differences between peaks
         rr_intervals = np.diff(peaks) / self.fs
         heart_rate = 60 / np.mean(rr_intervals)
+        self.hr_label.setText(str(int(heart_rate)))
 
         if heart_rate > 100:
             condition = "Ventricular Tachycardia (heart rate > 100 BPM)"
