@@ -132,7 +132,7 @@
             <item>
              <widget class="QFrame" name="frame_2">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -147,7 +147,7 @@
                   </sizepolicy>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
+                  <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
@@ -176,6 +176,12 @@
                       <width>0</width>
                       <height>150</height>
                      </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Plain</enum>
                     </property>
                     <property name="horizontalScrollBarPolicy">
                      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -206,7 +212,7 @@
                   <item>
                    <widget class="QFrame" name="frame_7">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -215,7 +221,7 @@
                      <item>
                       <widget class="QFrame" name="frame_10">
                        <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
+                        <enum>QFrame::NoFrame</enum>
                        </property>
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
@@ -287,7 +293,7 @@
                   <item>
                    <widget class="QFrame" name="frame_8">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -326,7 +332,7 @@
             <item>
              <widget class="QFrame" name="frame_4">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -341,7 +347,7 @@
                   </sizepolicy>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
+                  <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
@@ -371,6 +377,9 @@ color: rgb(0, 255, 255);</string>
                       <width>0</width>
                       <height>150</height>
                      </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="verticalScrollBarPolicy">
                      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -404,7 +413,7 @@ color: rgb(0, 255, 255);</string>
                   <item>
                    <widget class="QFrame" name="frame_18">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -413,7 +422,7 @@ color: rgb(0, 255, 255);</string>
                      <item>
                       <widget class="QFrame" name="frame_19">
                        <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
+                        <enum>QFrame::NoFrame</enum>
                        </property>
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
@@ -466,7 +475,7 @@ color: rgb(0, 255, 255);</string>
                   <item>
                    <widget class="QFrame" name="frame_20">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -505,7 +514,7 @@ color: rgb(0, 255, 255);</string>
             <item>
              <widget class="QFrame" name="frame_5">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -520,7 +529,7 @@ color: rgb(0, 255, 255);</string>
                   </sizepolicy>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
+                  <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
@@ -549,6 +558,9 @@ color: rgb(0, 255, 255);</string>
                       <width>0</width>
                       <height>150</height>
                      </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="verticalScrollBarPolicy">
                      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -582,7 +594,7 @@ color: rgb(0, 255, 255);</string>
                   <item>
                    <widget class="QFrame" name="frame_23">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -591,7 +603,7 @@ color: rgb(0, 255, 255);</string>
                      <item>
                       <widget class="QFrame" name="frame_24">
                        <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
+                        <enum>QFrame::NoFrame</enum>
                        </property>
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
@@ -642,7 +654,7 @@ color: rgb(0, 255, 255);</string>
                   <item>
                    <widget class="QFrame" name="frame_25">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -681,7 +693,7 @@ color: rgb(0, 255, 255);</string>
             <item>
              <widget class="QFrame" name="frame_3">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -696,7 +708,7 @@ color: rgb(0, 255, 255);</string>
                   </sizepolicy>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
+                  <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
@@ -726,6 +738,9 @@ color: rgb(255, 255, 0);</string>
                       <width>0</width>
                       <height>150</height>
                      </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="verticalScrollBarPolicy">
                      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -759,7 +774,7 @@ color: rgb(255, 255, 0);</string>
                   <item>
                    <widget class="QFrame" name="frame_28">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -772,7 +787,7 @@ color: rgb(255, 255, 0);</string>
 color: rgb(255, 255, 0);</string>
                        </property>
                        <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
+                        <enum>QFrame::NoFrame</enum>
                        </property>
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
@@ -828,7 +843,7 @@ color: rgb(255, 255, 0);</string>
                   <item>
                    <widget class="QFrame" name="frame_30">
                     <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                     <enum>QFrame::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
@@ -868,7 +883,7 @@ color: rgb(255, 255, 0);</string>
             <item>
              <widget class="QFrame" name="frame_31">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -1002,7 +1017,7 @@ background-color : rgb(38,38,59);
                      <string notr="true">color: white;</string>
                     </property>
                     <property name="text">
-                     <string>Bradycardia</string>
+                     <string>bradycardia</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>
