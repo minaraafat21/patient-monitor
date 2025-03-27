@@ -66,10 +66,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 # Reset index and stop previous playback
                 self.current_index = 0
                 self.timer.stop()
-
-                # Clear previous plots
+                self.path_item = None
                 self.scene.clear()
-
                 # Start the animation
                 self.timer.start()
 
@@ -85,7 +83,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.resp_graph.update_plot()
 
     def update_ecg_plot(self):
-        """Updates the ECG signal in the QGraphicsView."""
         if self.ecg_signal is None:
             return
 
@@ -95,12 +92,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Prepare the ECG segment to be drawn
         x_data = np.arange(self.window_size)
-        y_data = self.ecg_signal[self.current_index:
-                                 self.current_index + self.window_size]
+        y_data = self.ecg_signal[self.current_index:self.current_index + self.window_size]
 
         # Normalize for display
-        y_data = (y_data - np.min(y_data)) / \
-            (np.max(y_data) - np.min(y_data)) * 100
+        y_data = (y_data - np.min(y_data)) / (np.max(y_data) - np.min(y_data)) * 100
         y_data = 100 - y_data  # Flip for correct orientation
 
         # Create a new ECG path
@@ -109,11 +104,11 @@ class MainWindow(QtWidgets.QMainWindow):
         for x, y in zip(x_data, y_data):
             path.lineTo(x, y)
 
-        # Remove old path and add new one
-        if self.path_item:
+        if self.path_item is not None and self.path_item.scene() == self.scene:
             self.scene.removeItem(self.path_item)
-        self.path_item = self.scene.addPath(
-            path, QtGui.QPen(QtGui.QColor(85, 255, 0), 2))
+
+        # Add new path to the scene
+        self.path_item = self.scene.addPath(path, QtGui.QPen(QtGui.QColor(85, 255, 0), 2))
 
         # Adjust the view
         self.graphics_view.setSceneRect(0, 0, self.window_size, 100)
