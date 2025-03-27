@@ -1002,7 +1002,7 @@ background-color : rgb(38,38,59);
                      <string notr="true">color: white;</string>
                     </property>
                     <property name="text">
-                     <string>bradycardia</string>
+                     <string>Bradycardia</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>

@@ -40,13 +40,36 @@ class MainWindow(QtWidgets.QMainWindow):
         self.path_item = None  # Placeholder for ECG path
         self.fs = None
 
+        # alarm styles
+        self.normal_siren_style = (
+            "QWidget{\nbackground-color : rgb(38,38,59);\n	\n\n"
+            "        border-radius: 10px;\n        padding: 10px;\n"
+            "        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);\n\n}"
+        )
+        self.alarm_siren_style = (
+            "QWidget{\nbackground-color : red;\n	\n\n"
+            "        border-radius: 10px;\n        padding: 10px;\n"
+            "        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);\n\n}"
+        )
+
     def load_signal(self):
         """Loads an ECG signal from a .mat file and starts plotting."""
+
         file_dialog = QtWidgets.QFileDialog()
         file_path, _ = file_dialog.getOpenFileName(
             self, "Open ECG Signal", "", "MAT Files (*.mat);;CSV Files (*.csv)")
 
         if file_path:
+            if hasattr(self, 'alarm_timer'):
+                try:
+                    self.alarm_timer.timeout.disconnect()
+                except:
+                    pass
+                
+                self.AF_widget.setStyleSheet(self.normal_siren_style)
+                self.bradycardia_widget.setStyleSheet(self.normal_siren_style)
+                self.VT_widget.setStyleSheet(self.normal_siren_style)
+
             try:
                 if file_path.endswith('.mat'):
                     mat_contents = sio.loadmat(file_path)
@@ -172,26 +195,15 @@ class MainWindow(QtWidgets.QMainWindow):
             # no alarm - normal
 
     def alarm_siren(self, widget):
-        """Continuously toggles the alarm style on the widget."""
-        normal_style = (
-            "QWidget{\nbackground-color : rgb(38,38,59);\n	\n\n"
-            "        border-radius: 10px;\n        padding: 10px;\n"
-            "        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);\n\n}"
-        )
-        alarm_style = (
-            "QWidget{\nbackground-color : red;\n	\n\n"
-            "        border-radius: 10px;\n        padding: 10px;\n"
-            "        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);\n\n}"
-        )
-
+        """Continuously toggles the alarm style on the widget."""        
         self.alarm_timer = QtCore.QTimer(self)
         self.alarm_state = True  # Track the current state (normal or alarm)
 
         def toggle_style():
             if self.alarm_state:
-                widget.setStyleSheet(alarm_style)
+                widget.setStyleSheet(self.alarm_siren_style)
             else:
-                widget.setStyleSheet(normal_style)
+                widget.setStyleSheet(self.normal_siren_style)
             self.alarm_state = not self.alarm_state 
 
         # Connect the timer to the toggle function
